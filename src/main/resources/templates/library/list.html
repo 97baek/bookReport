@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="library/layout/basic">
+   <th:block layout:fragment="title">
+      <title>The page is a list page</title>
+   </th:block>
+   <th:block layout:fragment="search">
+      <form action="#" id="searchform-header" class="searchform js_toggle active pull-right">
+         <input type="search" placeholder="Search..." class="input-search">
+         <button class="mdi-magnify button-search" type="submit">
+            <i class="fa fa=search" aria-hidden="true"></i>
+         </button>
+      </form>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <div class="table-responsive clearfix">
+         <table class="table table-hover">
+            <thead>
+               <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>작가</th>
+                  <th>등록일</th>
+                  <th>조회수</th>
+               </tr>
+            </thead>
+            <tbody>
+               <!-- if 조건문 -->
+               <tr th:if="${not #lists.isEmpty(libraryList)}" th:each="row : ${libraryList}">
+               	  <!-- 공지가 있으면 출력 -->
+                  <td scope="row" th:text="${#strings.equals(row.noticeYn, 'Y') ? '공지' : row.idx}"></td>
+                  <td class="text-left">
+                     <a th:href="@{/library/view.do(idx=${row.idx})}" th:text="${row.title}"></a>
+                  </td>
+                  <td th:text="${row.author}"></td>
+                  <td th:text="${#temporals.format(row.insertTime, 'yyyy-MM-dd')}"></td>
+                  <td th:text="${row.viewCnt}"></td>
+               </tr>
+               <!-- if문의 조건이 아닐경우 -->
+               <tr th:unless="${not #lists.isEmpty(libraryList)}">
+                  <td colspan="5">조회된 결과가 없습니다.</td>
+               </tr>
+            </tbody>
+         </table>
+         <div class="btn_wrap text-right">
+            <a th:href="@{/library/write.do}" class="btn btn-primary waves-effect waves-light">Write</a>
+         </div>
+         <th:block layout:fragment="paging">
+            <nav aria-label="Page navigation" class="text-center">
+               <ul class="pagination">
+                  <li>
+                     <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                     </a>
+                  </li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                     <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                     </a>
+               </ul>
+            </nav>
+         </th:block>
+      </div>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
