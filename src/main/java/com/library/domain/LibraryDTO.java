@@ -20,6 +20,7 @@ public class LibraryDTO
   private LocalDateTime insertTime;
   private LocalDateTime updateTime;
   private LocalDateTime deleteTime;
+  private String thumbImg;
 
   public Long getIdx()
   {
@@ -110,6 +111,14 @@ public class LibraryDTO
     this.deleteTime = deleteTime;
   }
 
+  public String getThumbImg() {
+  	return thumbImg;
+  }
+  
+  public void setThumbImg(String thumbImg) {
+  	this.thumbImg=thumbImg;
+  }
+  
   public String toString()
   {
     return "LibraryDTO [idx=" + this.idx + ", title=" + this.title + ", content=" + this.content + ", author=" + this.author + 

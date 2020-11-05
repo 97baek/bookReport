@@ -1,0 +1,98 @@
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+button {
+  background: 0, 0, 0, 0;
+  border: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:60%;
+  background-color: #f5f7fa;
+}
+
+.clock {
+  color: #fff9db;
+  font-size: 7rem;
+  text-shadow: 3px 3px 10px gray;
+  padding:32px;
+}
+
+.input {
+  width: 700px;
+  font-size: 30px;
+  margin: 12px;
+  background: rgba(0, 0, 0, 0);
+  color: black;
+  border: 0;
+  border-bottom: 2px solid gray;
+}
+
+.hellomsg {
+  width: 700px;
+  font-size: 30px;
+}
+
+.hiding {
+  display: none;
+}
+
+.showing {
+  display: block;
+}
+
+.toDo-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid gray;
+  border-radius: 24px;
+  width: 630px;
+  padding: 36px;
+  margin: 30px;
+}
+
+.input {
+  padding: 8px;
+  color: black;
+}
+
+.toDo-container .list-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  width: 300px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.toDo-container .list-container li {
+  text-align: center;
+  padding: 2px;
+}
+
+.toDo-container .list-container li span {
+  padding: 0px 6px;
+}
+
+.toDo-container .list-container .doneToDo li {
+  text-decoration: line-through;
+}
+
+.list-container h1 {
+  margin: 8px 12px;
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+}

@@ -15,11 +15,17 @@ import org.springframework.context.annotation.PropertySource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+
 @org.springframework.context.annotation.Configuration
 @PropertySource({"classpath:/application.properties"})
 public class DBConfiguration
 {
-
+  @Bean
+  public LayoutDialect layoutDialect() {
+      return new LayoutDialect();
+  }
+  
   @Autowired
   private ApplicationContext applicationContext;
 

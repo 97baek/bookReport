@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="/plugin/jquery.mCustomScrollbar.min.css" />
-	<link rel="stylesheet" href="/css/index.css" />
-	<link rel="stylesheet" href="/css/reset.css" />
-</head>
-<body>
-	<header class="header">
-		<h1>
-			<a href="/library/index.do">BAEKSANGHEUN</a>
-		</h1>
-	</header>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist | BAEKSANGHEUN</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/todo.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1><a href="/library/index.do">BAEKSANGHEUN</a></h1>
+    </header>
+    <div class="container">
+      <h1 class="clock">00:00</h1>
+      <form class="greet_form hiding">
+        <input type="text" class="input" placeholder="input your name" />
+      </form>
+      <h4 class="hellomsg hiding"></h4>
+      <form class="toDoForm">
+        <input type="text" class="input toDoInput" placeholder="write to do" />
+      </form>
+      <div class="toDo-container">
+        <div class="list-container">
+          <h1 class="toDo-header">할일 목록</h1>
+          <ul class="js-toDoList toDoList"></ul>
+        </div>
+        <div class="list-container">
+          <h1 class="done-header">끝낸 할일</h1>
+          <ul class="js-doneList doneToDo"></ul>
+        </div>
+      </div>
+      <span class="js-weather"></span>
+    </div>
+
+    <script src="/scripts/toDo.js"></script>
+    <script src="/scripts/greeting.js"></script>
+    <script src="/scripts/clock.js"></script>
+    <script src="/scripts/weather.js"></script>
+  </body>
 </html>

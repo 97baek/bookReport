@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="library/layout/basic">
 	<head th:replace="library/fragments/header::main-head"></head>
 	<body>
 		<form th:if="${not #maps.isEmpty(params)}" name="dataForm" th:action="${redirectUri}" th:method="${method}" style="display:none;">

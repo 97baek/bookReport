@@ -21,11 +21,18 @@
 	    </div>
 		<ul class="cont-list">
 			<li th:if="${not #lists.isEmpty(libraryList)}" th:each="row : ${libraryList}" class="cont-item">
-				<figure class="card-image" style="background-image: url(img/1.jpg)"></figure>
-				<div class="card-desc">
-					<a th:href="@{/library/view.do(idx=${row.idx})}" th:text="${row.title}"></a>
-					<span th:text="${row.author}"></span>
-					<span th:text="${#temporals.format(row.insertTime, 'yyyy-MM-dd')}"></span>
+				<div class="card-container">
+					<div class="card-content">
+						<div class="card-front">
+							<h3 th:text="${row.title}"></h3>
+							<p th:text="${row.author}"></p>
+						</div>
+						<div class="card-back">
+							<p th:text="${row.content}"></p>
+							<p th:text="${#temporals.format(row.insertTime, 'yyyy-MM-dd')}"></p>
+							<a class="btn-read blue" th:href="@{/library/view.do(idx=${row.idx})}">read</a>
+						</div>
+					</div>
 				</div>
 			</li>
 		</ul>
@@ -43,5 +50,6 @@
 
 	<script th:src="@{/scripts/main.js}"></script>
 	<script th:src="@{/scripts/common.js}"></script>
+
 </body>
 </html>
