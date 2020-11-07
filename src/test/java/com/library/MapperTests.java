@@ -91,20 +91,20 @@ public class MapperTests {
 		}
 	}
 
-	@Test
-	public void testSelectList() {
-		int libraryTotalCount = libraryMapper.selectLibraryTotalCount();
-		if (libraryTotalCount > 0) {
-			List<LibraryDTO> libraryList = libraryMapper.selectLibraryList();
-			if (CollectionUtils.isEmpty(libraryList) == false) {
-				for (LibraryDTO library : libraryList) {
-					System.out.println("=========================");
-					System.out.println(library.getTitle());
-					System.out.println(library.getContent());
-					System.out.println(library.getAuthor());
-					System.out.println("=========================");
-				}
-			}
-		}
-	}
+//	@Test
+//	public void testSelectList() {
+//		int libraryTotalCount = libraryMapper.selectLibraryTotalCount();
+//		if (libraryTotalCount > 0) {
+//			List<LibraryDTO> libraryList = libraryMapper.selectLibraryList();
+//			if (CollectionUtils.isEmpty(libraryList) == false) {
+//				for (LibraryDTO library : libraryList) {
+//					System.out.println("=========================");
+//					System.out.println(library.getTitle());
+//					System.out.println(library.getContent());
+//					System.out.println(library.getAuthor());
+//					System.out.println("=========================");
+//				}
+//			}
+//		}
+//	}
 }

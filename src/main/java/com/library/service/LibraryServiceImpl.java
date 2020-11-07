@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.domain.LibraryDTO;
+import com.library.paging.Criteria;
+import com.library.paging.PaginationInfo;
 import com.library.mapper.LibraryMapper;
 
 @Service
@@ -41,12 +43,20 @@ public class LibraryServiceImpl implements LibraryService{
 	}
 	
 	@Override
-	public List<LibraryDTO> getLibraryList(){
+	public List<LibraryDTO> getLibraryList(LibraryDTO params){
 		List<LibraryDTO> libraryList = Collections.emptyList();
-		int libraryTotalCount = libraryMapper.selectLibraryTotalCount();
-		if(libraryTotalCount > 0) {
-			libraryList = libraryMapper.selectLibraryList();
+
+		int libraryTotalCount = libraryMapper.selectLibraryTotalCount(params);
+
+		PaginationInfo paginationInfo = new PaginationInfo(params);
+		paginationInfo.setTotalRecordCount(libraryTotalCount);
+
+		params.setPaginationInfo(paginationInfo);
+
+		if (libraryTotalCount > 0) {
+			libraryList = libraryMapper.selectLibraryList(params);
 		}
+
 		return libraryList;
 	}
 }

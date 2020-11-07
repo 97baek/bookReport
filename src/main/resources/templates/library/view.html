@@ -45,10 +45,11 @@
                 </div>
               </div>
             </div>
-            <div class="buttons">
-              <button class="btn btn-go-list"><a th:href="@{/library/list.do}">목록</a></button>
-              <button class="btn btn-mod"><a th:href="@{/library/write.do(idx=${library.idx})}">수정</a></button>
-              <button class="btn btn-del" type="button" th:onclick="deleteLibrary([[${library.idx}]])">삭제</button>
+            <div class="buttons" th:object="${params}">
+              <button class="btn btn-go-list"><a th:href="|@{/library/list.do}*{makeQueryString(currentPageNo)}|">목록</a></button>
+              <button class="btn btn-mod"><a th:href="|@{/library/write.do}*{makeQueryString(currentPageNo)}&idx=${library.idx}|">수정</a></button>
+              <button class="btn btn-del" type="button" th:onclick="deleteLibrary([[ ${library.idx} ]], [[ *{makeQueryString(currentPageNo)} ]])">삭제</button>
+              <button type="button" th:onclick="deleteLibrary([[ ${library.idx} ]], [[ *{makeQueryString(currentPageNo)} ]])">삭제하기</button>
             </div>
           </div>
         </div>
@@ -105,28 +106,40 @@
       <!-- /.box-content -->
     </div>
 		
-	<script th:src="@{/scripts/jquery.min.js}"></script>
-	<script th:src="@{/plugin/bootstrap/js/bootstrap.min.js}"></script>
-	<script th:src="@{/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
-	
-	<script th:src="@{/scripts/main.js}"></script>
-	<script th:src="@{/scripts/common.js}"></script>
 	<script th:inline="javascript">
-	// 타임리프에서 자바스크립트는 꼭 CDATA로 묶어줘야함
+		// 타임리프에서 자바스크립트는 꼭 CDATA로 묶어줘야함
 		/*<![CDATA[*/
-		function deleteLibrary(idx){
-			if(confirm(idx+"번 게시글을 삭제할까요?")){
-				var uri=/*[[@{/library/delete.do}]]*/;
-				var html="";
-				
-				html+='<form name="dataForm" action="'+uri+'" method="post">';
-				html+='<input type="hidden" name="idx" value="'+idx+'"/>';
-				html+='</form>';
+		function deleteLibrary(idx, queryString) {
+		
+			if (confirm(idx + "번 게시글을 삭제할까요?")) {
+				var uri = /*[[ @{/library/delete.do} ]]*/;
+				var html = "";
+		
+				html += '<form name="dataForm" action="'+uri+'" method="post">';
+				html += '<input type="hidden" name="idx" value="'+idx+'" />';
+		
+				/*[- 쿼리 스트링을 오브젝트 형태로 변환 -]*/
+				queryString = new URLSearchParams(queryString);
+				queryString.forEach(function(value, key) {
+					if (isEmpty(value) == false) {
+						html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
+					}
+				});
+		
+				html += '</form>';
+		
 				$("body").append(html);
 				document.dataForm.submit();
 			}
 		}
 		/*]]>*/
 	</script>
+	<script th:src="@{/scripts/jquery.min.js}"></script>
+	<script th:src="@{/plugin/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+	
+	<script th:src="@{/scripts/main.js}"></script>
+	<script th:src="@{/scripts/common.js}"></script>
+
 </body>
 </html>

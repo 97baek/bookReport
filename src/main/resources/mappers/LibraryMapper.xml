@@ -66,19 +66,22 @@
 			idx = #{idx}
 	</update>
 	
+	<!-- pagination.firstRecordIndex: 가져올 데이터의 시작 위치, recordsPerPage: 시작 위치를 기준으로 가져올 데이터의 개수 -->
 	<select id="selectLibraryList" parameterType="LibraryDTO" resultType="LibraryDTO">
 		SELECT
-			<include refid="libraryColumns"/>
+			<include refid="libraryColumns" />
 		FROM
 			tb_library
 		WHERE
 			delete_yn = 'N'
+		<include refid="CommonMapper.search" />
 		ORDER BY
 			notice_yn ASC,
 			idx DESC,
 			insert_time DESC
+		<include refid="CommonMapper.paging" />
 	</select>
-	
+
 	<select id="selectLibraryTotalCount" parameterType="LibraryDTO" resultType="int">
 		SELECT
 			COUNT(*)
@@ -86,5 +89,6 @@
 			tb_library
 		WHERE
 			delete_yn = 'N'
+		<include refid="CommonMapper.search" />
 	</select>
 </mapper>

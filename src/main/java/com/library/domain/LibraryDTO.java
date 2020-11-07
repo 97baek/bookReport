@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LibraryDTO
+public class LibraryDTO extends CommonDTO
 {
   private Long idx;
   private String title;
