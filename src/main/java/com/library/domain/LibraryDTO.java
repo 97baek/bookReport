@@ -16,10 +16,7 @@ public class LibraryDTO extends CommonDTO
   private int viewCnt;
   private String noticeYn;
   private String secretYn;
-  private String deleteYn;
-  private LocalDateTime insertTime;
-  private LocalDateTime updateTime;
-  private LocalDateTime deleteTime;
+
   private String thumbImg;
 
   public Long getIdx()
@@ -79,37 +76,6 @@ public class LibraryDTO extends CommonDTO
     this.secretYn = secretYn;
   }
 
-  public String getDeleteYn() {
-    return this.deleteYn;
-  }
-
-  public void setDeleteYn(String deleteYn) {
-    this.deleteYn = deleteYn;
-  }
-
-  public LocalDateTime getInsertTime() {
-    return this.insertTime;
-  }
-
-  public void setInsertTime(LocalDateTime insertTime) {
-    this.insertTime = insertTime;
-  }
-
-  public LocalDateTime getUpdateTime() {
-    return this.updateTime;
-  }
-
-  public void setUpdateTime(LocalDateTime updateTime) {
-    this.updateTime = updateTime;
-  }
-
-  public LocalDateTime getDeleteTime() {
-    return this.deleteTime;
-  }
-
-  public void setDeleteTime(LocalDateTime deleteTime) {
-    this.deleteTime = deleteTime;
-  }
 
   public String getThumbImg() {
   	return thumbImg;
@@ -117,13 +83,5 @@ public class LibraryDTO extends CommonDTO
   
   public void setThumbImg(String thumbImg) {
   	this.thumbImg=thumbImg;
-  }
-  
-  public String toString()
-  {
-    return "LibraryDTO [idx=" + this.idx + ", title=" + this.title + ", content=" + this.content + ", author=" + this.author + 
-      ", viewCnt=" + this.viewCnt + ", noticeYn=" + this.noticeYn + ", secretYn=" + this.secretYn + ", deleteYn=" + 
-      this.deleteYn + ", insertTime=" + this.insertTime + ", updateTime=" + this.updateTime + ", deleteTime=" + this.deleteTime + 
-      "]";
   }
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="library/layout/basic">
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head th:replace="library/fragments/header::main-head"></head>
 	<body>
-		<form th:if="${not #maps.isEmpty(params)}" name="dataForm" th:action="${redirectUri}" th:method="${method}" style="display:none;">
+		<form th:if="${not #strings.isEmpty(params)}" name="dataForm" th:action="${redirectUri}" th:method="${method}" style="display:none;">
 			<input th:each="key, status : ${params.keySet()}" type="hidden" th:name="${key}" th:value="${params.get(key)}"/>
 		</form>
-		<script src="@{/scripts/common.js}"></script>
+		<script th:src="@{/scripts/common.js}"></script>
 		<th:block layout:fragment="script">
 			<script th:inline="javascript">
 			/* <![CDATA[ */
