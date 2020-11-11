@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="/css/reset.css" />
 </head>
 <body>
-	<header class="header">
-		<h1>
+	<header class="header" style="text-align:center; margin:1.5% 0;">
+		<h1 style="font-size:2em;">
 			<a href="/library/index.do">BAEKSANGHEUN</a>
 		</h1>
 	</header>
@@ -55,7 +55,13 @@
 		
 	
 		<div class="writeBtn">
-			<a th:href="@{/library/write.do}">Write</a>
+			<a class="neon-btn-blue" th:href="@{/library/write.do}">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				Write
+			</a>
 	    </div>
 		<ul class="cont-list">
 			<li th:if="${not #lists.isEmpty(libraryList)}" th:each="row : ${libraryList}" class="cont-item">
@@ -66,7 +72,7 @@
 							<p th:text="${row.author}"></p>
 						</div>
 						<div class="card-back">
-							<p th:text="${row.content}"></p>
+							<p class="ellipsis3" th:text="${row.content}"></p>
 							<p th:text="${#temporals.format(row.insertTime, 'yyyy-MM-dd')}"></p>
 							<a class="btn-read blue" th:href="|@{/library/view.do}${params.makeQueryString(params.currentPageNo)}&idx=${row.idx}|">read</a>
 						</div>

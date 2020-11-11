@@ -33,9 +33,33 @@
 	                </form>
 	            </div>
 	            <div class="modal-footer">
-	                <button type="button" id="btnModalCancel" class="btn btn-default waves-effect waves-light" data-dismiss="modal">취소하기</button>
-	                <button type="button" id="btnCommentUpdate" class="btn btn-primary waves-effect waves-light" onclick="updateComment()">수정하기</button>
-	                <button type="button" id="btnCommentDelete" class="btn btn-danger waves-effect waves-light">삭제하기</button>
+		            <a>
+          	            <button type="button" id="btnModalCancel" class="neon-btn-blue" data-dismiss="modal">
+		                	<span></span>
+		                	<span></span>
+		                	<span></span>
+		                	<span></span>
+		                	cancel
+		                </button>
+		            </a>
+		            <a>
+          	            <button type="button" id="btnCommentUpdate" class="neon-btn-green" onclick="updateComment()">
+		                	<span></span>
+		                	<span></span>
+		                	<span></span>
+		                	<span></span>
+		                	edit
+		                </button>
+		            </a>
+		            <a>
+          	            <button type="button" id="btnCommentDelete" class="neon-btn-red">
+		                	<span></span>
+		                	<span></span>
+		                	<span></span>
+		                	<span></span>
+		                	delete
+		                </button>
+		            </a>
 	            </div>
 	        </div>
 	    </div>
@@ -73,10 +97,29 @@
               </div>
             </div>
             <div class="buttons" th:object="${params}">
-              <button class="btn btn-go-list"><a th:href="|@{/library/list.do}*{makeQueryString(currentPageNo)}|">목록</a></button>
-              <button class="btn btn-mod"><a th:href="|@{/library/write.do}*{makeQueryString(currentPageNo)}&idx=${library.idx}|">수정</a></button>
-              <button class="btn btn-del" type="button" th:onclick="deleteLibrary([[ ${library.idx} ]], [[ *{makeQueryString(currentPageNo)} ]])">삭제</button>
-              <button type="button" th:onclick="deleteLibrary([[ ${library.idx} ]], [[ *{makeQueryString(currentPageNo)} ]])">삭제하기</button>
+              <a class="neon-btn-blue" th:href="|@{/library/list.do}*{makeQueryString(currentPageNo)}|">
+              	<span></span>
+              	<span></span>
+              	<span></span>
+              	<span></span>
+              	list
+              </a>
+              <a class="neon-btn-green" th:href="|@{/library/write.do}*{makeQueryString(currentPageNo)}&idx=${library.idx}|">
+              	<span></span>
+              	<span></span>
+              	<span></span>
+              	<span></span>
+              	edit
+              </a>
+              <a>
+	              <button  class="neon-btn-red" type="button" th:onclick="deleteLibrary([[ ${library.idx} ]], [[ *{makeQueryString(currentPageNo)} ]])">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					delete
+				  </button>
+			  </a>
             </div>
           </div>
         </div>
@@ -84,8 +127,8 @@
       <form th:object="${library}">
 	      <div class="view-content">
 	        <label for="inp-type-5"></label>
-	        <p class="view-content-context" th:text="*{content}">
-	        </p>
+		        <p class="view-content-context" th:text="*{content}" style="white-space:pre-wrap;"> <!-- 개행 처리를 위한 pre-wrap -->
+		        </p>
 	      </div>
 	  </form>
       <div class="view-comment">
@@ -95,13 +138,17 @@
             <!-- /.box-title -->
           </div>
           <form class="input-comment">
-            <div class="input-group margin-bottom-20">
-              <input type="text" id="content" class="form-control" />
-              <div class="input-group-btn">
-                <button type="button" class="comment-register-btn" th:onclick="insertComment([[ ${library.idx} ]])">
+            <div class="input-comment-group">
+              <input type="text" id="content"/>
+              <a>
+                <button class="neon-btn-silver" type="button" th:onclick="insertComment([[ ${library.idx} ]])">
+	                <span></span>
+	                <span></span>
+	                <span></span>
+	                <span></span>
                   	등록<i class="fa fa-commenting" aria-hidden="true"></i>
                 </button>
-              </div>
+              </a>
               <!-- /.input-group-btn -->
             </div>
             <ul class="notice-list"></ul>
@@ -123,6 +170,10 @@
 	<script th:inline="javascript">
 		// 타임리프에서 자바스크립트는 꼭 CDATA로 묶어줘야함
 		/*<![CDATA[*/
+			
+			var button_joinus = document.querySelector('button');
+			button_joinus.disabled = true;
+
 			function openModal(idx, writer, content) {
 		
 				$("#commentModal").modal("toggle");
@@ -256,6 +307,35 @@
 				}
 			}
 			/*[- end of function -]*/
+			
+			function deleteComment(idx) {
+				if (!confirm('댓글을 삭제하시겠어요?')) {
+					return false;
+				}
+			
+				var uri = [[ @{/comments/} ]] + idx;
+				var headers = {"Content-Type": "application/json", "X-HTTP-Method-Override": "DELETE"};
+			
+				$.ajax({
+					url: uri,
+					type: "DELETE",
+					headers: headers,
+					dataType: "json",
+					success: function(response) {
+						if (response.result == false) {
+							alert("댓글 삭제에 실패하였습니다.");
+							return false;
+						}
+			
+						printCommentList();
+						$("#commentModal").modal("hide");
+					},
+					error: function(xhr, status, error) {
+						alert("에러가 발생하였습니다.");
+						return false;
+					}
+				});
+			}
 
 			/*]]>*/
 	</script>

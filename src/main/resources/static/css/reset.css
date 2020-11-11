@@ -50,6 +50,27 @@ ol {
   list-style: none;
 }
 
+/* 버튼 초기화*/
+button{
+	background:none;
+	border:0px;
+}
+
+button:hover{
+	cursor:pointer;
+}
+
+/* 세줄 효과*/
+.ellipsis3{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  line-height: 1.2em;
+  height: 5.5em;
+} 
+
 /* margin, padding */
 .mt10 {
   margin-top: 10px !important;
