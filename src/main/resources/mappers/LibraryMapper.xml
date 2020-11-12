@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.library.mapper.LibraryMapper">
+<!-- 마이바티스에서 SQL 쿼리문이 정의되어 있는 파일. namespace는 XML Mapper의 쿼리문과 앞서 작성한 Mapper 인터페이스의 메서드를 매핑하기 위해 지정하는 속성. -->
+<mapper namespace="com.library.mapper.LibraryMapper"> 
+	<!-- 마이바티스는 <sql> 태그를 이용해 태그의 시작과 끝 사이에 공통으로 사용되거나, 반복적을 사용되는 SQL 조각을 정의할 수 있음. -->
 	<sql id="libraryColumns">
 		idx
 		, title
@@ -15,6 +17,10 @@
 		, delete_time
 	</sql>
 	
+	<!-- 
+		parameterType: 쿼리의 실행에 필요한 파라미터의 타입을 해당 속성에 지정
+		include: <sql>태그에 정의한 libraryColumns SQL 조각의 인클루드에 사용되는 태그
+	-->
 	<insert id="insertLibrary" parameterType="LibraryDTO">
 		INSERT INTO tb_library (
 			<include refid="libraryColumns"/>
@@ -33,6 +39,9 @@
 		)
 	</insert>
 
+	<!-- 
+		resultType: 쿼리의 실행 결과를 매핑할 타입을 지정
+	 -->
 	<select id="selectLibraryDetail" parameterType="long" resultType="LibraryDTO">
 		SELECT
 			<include refid="libraryColumns"/>

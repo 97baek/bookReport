@@ -8,8 +8,7 @@ import com.library.paging.PaginationInfo;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+/** 공통으로 사용될 DTO 클래스 */
 public class CommonDTO extends Criteria {
 
 	/** 페이징 정보 */
@@ -51,6 +50,7 @@ public class CommonDTO extends Criteria {
     this.deleteTime = deleteTime;
   }
 
+  // 페이징 정보
 	public PaginationInfo getPaginationInfo() {
 		return paginationInfo;
 	}

@@ -27,7 +27,7 @@ class LibraryApplicationTests
     try
     {
       System.out.println("=========================");
-      System.out.println(this.context.getBean("sqlSessionFactory"));
+      System.out.println(this.context.getBean("sqlSessionFactory")); // DBConfiguration 클래스의 sqlSessionFactory 메서드의 이름을 getBean 메서드의 인자로 지정
       System.out.println("=========================");
     } catch (Exception e) {
       e.printStackTrace();
@@ -38,7 +38,7 @@ class LibraryApplicationTests
   public void testBySqlSessionFactory() {
     try {
       System.out.println("=========================");
-      System.out.println(this.sessionFactory.toString());
+      System.out.println(this.sessionFactory.toString()); // 위의 getBean 메서드의 인자로 지정한 sqlSessionFactory와 @Autowired로 주입한 sessionFactory는 동일한 SqlSessionFactory 객체
       System.out.println("=========================");
     } catch (Exception e) {
       e.printStackTrace();

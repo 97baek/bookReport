@@ -1,5 +1,14 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- 
+	xmlns:th : 타임리프의 th 속성을 사용하기 위해 선언된 네임스페이스
+	xmlns:layout : 타임리프의 레이아웃 기능을 사용하기 위한 선언
+	th:text : ${} 표현식을 이용해서 컨트롤러에서 전달받은 데이터에 접근할 수 있으며 일반적인 텍스트 형식으로 화면에 출력
+	th:replace : 다른 html의 fragment를 찾아 해당 코드로 치환
+	th:object : ${library}는 컨트롤러에서 뷰로 전달한 LibraryDTO 클래스의 객체로, 해당 속성 이용 시 th:field를 이용해 HTML 태그에 멤버변수를 매핑할 수 있음
+	th:field : th:field를 이용한 사용자 입력 필드는 id, name, value 속성 값이 자동으로 매핑되기 때문에 각 속성을 따로 지정할 필요가 없으며, *{} 표현식 사용
+	th:checked : 체크박스의 경우 사용
+-->
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,6 +82,10 @@
     <!-- //card-content -->
     <script th:inline="javascript">
       	/*<![CDATA[*/
+      	/* onsubmit 이벤트에서 전달받은 this를 form이라는 이름의 파라미터로 사용
+      	   1. noticeYn과 secretYn의 체크 여부에 따라 값을 지정
+      	   2. result 변수에 isValid 함수를 실행한 결과 저장
+      	      isValid 함수는 필수적으로 입력되어야 하는 필드(제목, 작성자, 내용)의 유효성을 판단하는 기능 */
 		function registerLibrary(form) {
 		
 			form.noticeYn.value = form.noticeYn.checked == false ? 'N' : 'Y';

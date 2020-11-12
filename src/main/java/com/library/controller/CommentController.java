@@ -67,7 +67,7 @@ public class CommentController {
 		return jsonObj;
 	}
 	
-	@DeleteMapping(value = "/comments/{idx}")
+	@DeleteMapping(value = "/comments/{idx}") // HTTP 요청 메서드 중 DELETE 의미. 실제로 댓글을 삭제하는 것은 아니지만 URI의 구분을 위해 선언
 	public JsonObject deleteComment(@PathVariable("idx") final Long idx) {
 		JsonObject jsonObj=new JsonObject();
 		

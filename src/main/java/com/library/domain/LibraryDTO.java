@@ -1,14 +1,9 @@
 package com.library.domain;
 
-import java.time.LocalDateTime;
-
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+/** 게시판 테이블(tb_library)의 구조화 역할을 하는 클래스. 입력받은 데이터를 저장 및 전송 */
 public class LibraryDTO extends CommonDTO
 {
+	/* 멤버 변수의 순서는 게시판 테이블의 컬럼 순서와 동일해야함 */
   private Long idx;
   private String title;
   private String content;

@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- 
+	th:fragment : 해당 속성을 사용해 fragment의 이름 지정. 다른 HTML에서 include 또는 replace 속성을 사용해 적용 가능
+	th:block : layout:fragment 속성에 이름을 지정해서 실제 content 페이지의 내용을 채우는 기능. 동적 처리가 필요할때 사용
+	th:href : <a>태그의 href 속성과 동일
+ -->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head th:fragment="main-head">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

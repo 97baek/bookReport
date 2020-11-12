@@ -60,9 +60,9 @@ public class Criteria {
 	}
 
 	public Criteria() {
-		this.currentPageNo=1;
-		this.recordsPerPage=9;
-		this.pageSize=10;
+		this.currentPageNo=1; // 기본값으로 현재 페이지 번호는 1로
+		this.recordsPerPage=9; // 페이지당 출력할 데이터 개수는 9로
+		this.pageSize=10; // 하단에 출력할 페이지 개수는 10으로 지정
 	}
 	
 	// 멤버변수들을 쿼리 스트링 형태로 반환

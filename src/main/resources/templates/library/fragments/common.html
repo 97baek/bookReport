@@ -1,20 +1,30 @@
 <!DOCTYPE html>
+<!-- 페이징 처리를 위한 html 페이지 -->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 	<nav th:fragment="pagination" th:if="${params != null and params.paginationInfo.totalRecordCount > 0}" th:object="${params.paginationInfo}" th:with="info=${params.paginationInfo}" aria-label="Page navigation" class="text-center">
 		<ul class="pagination">
+			<!--
+				movePage함수
+				$(#request.requestURI)는 요청 URI를 가지고 올 때 사용(/library/list.do 반환)
+				${params.makeQueryString(pageNo)}는 현재 페이지 번호, 페이지당 출력할 데이터의 개수, 하단에 출력할 페이지의 개수 정보를 쿼리 스트링 형태로 반환-->
+			<!-- 이전 페이지 존재 시 게시글 리스트에서 1페이지로 이동 -->
 			<li th:if="*{hasPreviousPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(1)} ]])">
 				<a href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
 			</li>
+			<!-- 이전 페이지 존재시 게시글 리스트에서 첫 페이지 번호 -1페이지로 이동 -->
 			<li th:if="*{hasPreviousPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(info.firstPage - 1)} ]])">
 				<a href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a>
 			</li>
+			<!-- ${#numbers.sequence(from, to, step)} 함수는 from에서 to까지의 정수 시퀀스 생성 함수 -->
 			<li th:each="pageNo : *{#numbers.sequence( firstPage, lastPage )}" th:class="${pageNo == params.currentPageNo} ? 'active'">
 				<a href="javascript:void(0)" th:text="${pageNo}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(pageNo)} ]])"></a>
 			</li>
+			<!-- 마지막 페이지 번호 +1페이지로 이동 -->
 			<li th:if="*{hasNextPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(info.lastPage + 1)} ]])">
 				<a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a>
 			</li>
+			<!-- 존재하는 페이지 중 가장 마짐가 페이지 -->
 			<li th:if="*{hasNextPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(info.totalPageCount)} ]])">
 				<a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
 			</li>

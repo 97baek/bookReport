@@ -7,11 +7,30 @@
 
 </head>
   <body>
-    <header class="header">
-      <h1>
-        <a href="/library/index.do">BAEKSANGHEUN</a>
-      </h1>
-    </header>
+	<header class="header" style="text-align:center; margin:1.5% 0;">
+		<h1 style="font-size:2em;">
+			<a href="/library/index.do">BAEKSANGHEUN</a>
+		</h1>
+		<nav class="navbar">
+			<ul>
+				<li class="navbar-list">
+					<a href="/library/profile.do">
+						profile
+					</a>
+				</li>
+				<li class="navbar-list">
+					<a href="/library/list.do">
+						books
+					</a>
+				</li>
+				<li class="navbar-list">
+					<a href="/library/todolist.do">
+						todolist
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
    	<div id="commentModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content">
@@ -169,6 +188,7 @@
 	<script th:src="@{/scripts/common.js}"></script>
 	<script th:inline="javascript">
 		// 타임리프에서 자바스크립트는 꼭 CDATA로 묶어줘야함
+		// CDATA는 특수문자를 전부 문자열로 치환할 때 사용
 		/*<![CDATA[*/
 			
 			var button_joinus = document.querySelector('button');
@@ -281,16 +301,15 @@
 					}
 				}, "json");
 			}
-			/*[- end of function -]*/
-
-			function deleteLibrary(idx, queryString) {
+			
+			function deleteLibrary(idx, queryString) { // 삭제하기 버튼의 deleteLibrary 함수의 인자로 게시글 번호를 지정했기 때문에 함수의 파라미터로 idx를 전달받음
 
 				if (confirm(idx + "번 게시글을 삭제할까요?")) {
-					var uri = /*[[ @{/library/delete.do} ]]*/;
+					var uri = /*[[ @{/library/delete.do} ]]*/; // libraryController에 선언한 게시글 삭제 메서드와 매핑된 URI 의미
 					var html = "";
 
 					html += '<form name="dataForm" action="'+uri+'" method="post">';
-					html += '<input type="hidden" name="idx" value="'+idx+'" />';
+					html += '<input type="hidden" name="idx" value="'+idx+'" />';  // dataForm 안에 함수의 파라미터로 전달받은 idx를 hidden 타입으로 추가
 
 					/*[- 쿼리 스트링을 오브젝트 형태로 변환 -]*/
 					queryString = new URLSearchParams(queryString);
@@ -302,11 +321,10 @@
 
 					html += '</form>';
 
-					$("body").append(html);
-					document.dataForm.submit();
+					$("body").append(html); // html의 <body> 태그 안에 html 변수에 담긴 폼 추가
+					document.dataForm.submit(); // body>에 추가된 폼을 찾아 컨트롤러로 서브밋
 				}
 			}
-			/*[- end of function -]*/
 			
 			function deleteComment(idx) {
 				if (!confirm('댓글을 삭제하시겠어요?')) {
