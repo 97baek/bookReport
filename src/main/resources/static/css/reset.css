@@ -69,7 +69,13 @@ button:hover{
   -webkit-box-orient: vertical;
   line-height: 1.2em;
   height: 5.5em;
-} 
+}
+
+@media(max-width:768px){
+	.ellipsis3{
+		height:6em;
+	}
+}
 
 /* margin, padding */
 .mt10 {
@@ -98,4 +104,8 @@ button:hover{
 }
 .mt50 {
   margin-top: 50px !important;
+}
+
+.fz-54{
+	font-size:54px;
 }

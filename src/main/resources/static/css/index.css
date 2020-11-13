@@ -8,8 +8,7 @@ body {
 .header {
   margin: 1.5% 0;
   text-align: center;
-  font-size: 2rem;
-
+  font-size:27px;
 }
 
 .header h1{
@@ -182,11 +181,16 @@ body {
 	left:0;
 	width:100%;
 	height:100%;
-	backface-visiblity: hidden;
+	backface-visibility: hidden;
 	overflow:hidden;
 	background:#a5d8ff;
 	color:#333;
 	border-radius:1%;
+}
+
+.contents .cont-list .cont-item .card-front h3,
+.contents .cont-list .cont-item .card-front p{
+	font-family: 'Nanum Myeongjo', serif;
 }
 
 .contents .cont-list .cont-item:nth-child(2n) .card-front {
@@ -211,7 +215,7 @@ body {
 	left:0;
 	width:100%;
 	height:100%;
-	backface-visiblity: hidden;
+	backface-visibility: hidden;
 	overflow:hidden;
 	text-align:center;
 	background:#343a40;
@@ -260,7 +264,6 @@ body {
 
 .contents .writeBtn{
 	text-align:right;
-	padding: 8px 12px 0px 0px;
 }
 
 .contents .page-btn{
@@ -275,6 +278,12 @@ body {
 @media(max-width:1024px){
 	.contents{
 		width:100%;
+	}
+}
+
+@media(max-width:768px){
+	.contents .cont-list .cont-item .card-back p{
+		font-size:12px;
 	}
 }
 
@@ -932,7 +941,7 @@ body {
 }
 
 .neon-btn-silver:hover{
-	color:#343a40;
+	color:white;
 	background:#868e96;
 	box-shadow:0 0 10px #868e96, 0 0 40px #868e96, 0 0 80px #868e96;
 	transition-delay:1s;
